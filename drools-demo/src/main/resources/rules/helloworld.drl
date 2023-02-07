@@ -1,0 +1,22 @@
+package helloworld
+rule "rule_helloworld"
+
+    enabled false //当前规则不启用
+    dialect "java" //指定当前规则使用的语言类型, java(默认)、mvel
+    salience 1 //规则执行优先级，越大优先级越高
+    no-loop false //防止死循环
+    activation-group "mygroup" //指激活分组，取值为String类型。具有相同分组名称的规则只能有一个规则被触发
+    agenda-group "my_agenda_group_1" //议程分组，属于另一种可控的规则执行方式。用户可以通过设置agenda-group来控制规则的执行，只有获取焦点的组中的规则才会被触发
+    auto-focus false //自动获取焦点，取值类型为Boolean，默认值为false。一般结合agenda-group属性使用，当一个议程分组未获取焦点时，可以设置auto-focus属性来控制
+    timer (5s 2s) //执行时间：第一个参数表示几秒后执行，第二个参数表示每隔几秒执行一次，第二个参数为可选。
+//  timer (corn: 0/1 * * * * ?) //执行时间：每隔1秒触发一次
+
+//下面两个参数需要设置时间格式，在 DroolsConfig 配置类（kieContainer()方法）中设置
+    date-effective "2020-10-01 10:00:00" //规则的生效时间，即只有当前系统时间大于等于设置的时间或者日期规则才有可能触发。默认日期格式为：dd-MMM-yyyy。用户也可以自定义日期格式
+    date-expires "2019-10-01 10:00:00" //用于指定规则的失效时间，即只有当前系统时间小于设置的时间或者日期规则才有可能触发
+
+    when
+        eval(true)
+    then
+        System.out.println("规则：rule_helloworld触发...");
+end

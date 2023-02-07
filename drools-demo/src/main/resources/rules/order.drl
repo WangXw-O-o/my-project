@@ -1,0 +1,28 @@
+package order
+import com.wxw.drools.entity.Order
+
+rule "order_1"
+ when
+    $order:Order(originalPrice < 100)
+ then
+    $order.setRealPrice($order.getOriginalPrice());
+    System.out.println("触发规则[order_1]：100以下没有优惠");
+end
+
+rule "order_2"
+ when
+    $order:Order($op:originalPrice >= 100 && originalPrice < 200)
+ then
+    System.out.println("价格为：" + $op);
+    $order.setRealPrice($order.getOriginalPrice() - 20);
+    System.out.println("触发规则[order_2]：100-200之间优惠20元");
+end
+
+
+rule "order_3"
+ when
+    $order:Order(originalPrice >= 200)
+ then
+    $order.setRealPrice($order.getOriginalPrice() - 50);
+    System.out.println("触发规则[order_3]：200以上优惠50元");
+end

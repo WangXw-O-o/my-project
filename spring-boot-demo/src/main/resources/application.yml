@@ -1,0 +1,21 @@
+#注入属性
+userinfo:
+  age: 25
+  name: wangxuwen
+  active: true
+  createDate: 2018/01/01 16:00:00
+  map: {k1: a,k2: b}
+  hobbies:
+    - one
+    - two
+    - three
+
+#tomcat 端口
+server:
+  port: 9090
+
+#配置自带的Jackson
+spring:
+  jackson:
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+    time-zone: GMT+8
