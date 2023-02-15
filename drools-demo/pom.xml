@@ -67,7 +67,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>SpringBootDemoApplication</mainClass>
+                    <mainClass>com.wxw.springbootdemo.SpringBootDemoApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
