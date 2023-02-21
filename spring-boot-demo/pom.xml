@@ -34,6 +34,11 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
         <!-- self -->
         <dependency>
             <groupId>org.wxw</groupId>
