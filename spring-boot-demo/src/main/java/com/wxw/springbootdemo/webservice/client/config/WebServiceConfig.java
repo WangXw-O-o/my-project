@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 public class WebServiceConfig {
 
     @Bean
-    public DynamicClientFactory createFactory() {
-        return DynamicClientFactory.newInstance();
+    public JaxWsDynamicClientFactory createFactory() {
+        return JaxWsDynamicClientFactory.newInstance();
     }
 
     @Bean
     public Client createCNTSClient() {
-        DynamicClientFactory factory = createFactory();
+        JaxWsDynamicClientFactory factory = createFactory();
         return factory.createClient("http://www.webxml.com.cn/WebServices/TraditionalSimplifiedWebService.asmx?wsdl");
     }
 }

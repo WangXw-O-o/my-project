@@ -27,6 +27,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <drools.version>7.10.0.Final</drools.version>
         <cxf.version>3.4.3</cxf.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
 
     <dependencies>
@@ -52,6 +54,12 @@
             <groupId>org.drools</groupId>
             <artifactId>drools-core</artifactId>
             <version>${drools.version}</version>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.mvel</groupId>-->
+<!--                    <artifactId>mvel2</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.drools</groupId>
