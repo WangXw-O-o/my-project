@@ -12,6 +12,7 @@ public class WebServiceController {
     @Autowired
     private WebServiceClient webServiceClient;
 
+
     @GetMapping("/webservice/test/{param}")
     public String webserviceTest(@PathVariable("param") String param) {
         return webServiceClient.myWebserviceFacadeDemo(param);
