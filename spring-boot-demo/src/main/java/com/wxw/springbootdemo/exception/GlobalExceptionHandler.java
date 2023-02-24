@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NullPointerException.class)
     public String onException(NullPointerException exception) {
-        log.info("空指针异常！" + exception.getMessage());
+        log.error("空指针异常！" + exception.getMessage());
         return "空指针异常";
     }
 
@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(RepeatSubmitException.class)
     public ResultResponse onException(RepeatSubmitException exception) {
-        log.info("重复提交请求异常！" + exception.getMessage());
+        log.error("重复提交请求异常！" + exception.getMessage());
         return new ResultResponse(exception.getMessage());
     }
 

@@ -8,6 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
 
+/**
+ * 扩展MVC
+ * 通过重写 WebMvcConfigurer 中的方法，定制自己的拦截器、视图解析器、资源映射处理器等
+ */
 @Slf4j
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -21,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        log.info("拦截器 myHandlerInterceptor...");
+        log.debug("拦截器 myHandlerInterceptor...");
         //不拦截的url
         final String[] commonExclude = {"/test/unInterceptor1","/test/unInterceptor2"};
         registry.addInterceptor(myHandlerInterceptor).excludePathPatterns(commonExclude);
