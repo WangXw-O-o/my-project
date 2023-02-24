@@ -1,4 +1,4 @@
-package demo.nio.reactor;
+package demo.nio.reactor.single;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,8 +11,8 @@ import java.util.Set;
 
 public class EchoServerReactor implements Runnable {
 
-    private Selector selector;
-    private ServerSocketChannel serverSocketChannel;
+    private final Selector selector;
+    private final ServerSocketChannel serverSocketChannel;
 
     public EchoServerReactor() throws IOException {
         selector = Selector.open();

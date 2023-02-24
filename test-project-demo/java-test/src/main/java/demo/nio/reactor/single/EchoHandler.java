@@ -1,4 +1,4 @@
-package demo.nio.reactor;
+package demo.nio.reactor.single;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -11,11 +11,11 @@ import java.nio.channels.SocketChannel;
  */
 public class EchoHandler implements Runnable {
 
-    private SocketChannel socketChannel;
-    private SelectionKey selectionKey;
+    private final SocketChannel socketChannel;
+    private final SelectionKey selectionKey;
     private final ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-    static final int RECIEVING = 0, SENDING = 1;
-    int state = RECIEVING;
+    private static final int RECEIVING = 0, SENDING = 1;
+    private int state = RECEIVING;
 
     public EchoHandler(SocketChannel socketChannel, Selector selector) throws IOException {
         this.socketChannel = socketChannel;
@@ -33,11 +33,15 @@ public class EchoHandler implements Runnable {
     public void run() {
         try {
             if (state == SENDING) {
+                System.out.println("SENDING");
                 socketChannel.write(byteBuffer);
                 byteBuffer.flip();
                 selectionKey.interestOps(SelectionKey.OP_READ);
-                state = RECIEVING;
-            } else if (state == RECIEVING){
+                state = RECEIVING;
+                //处理完成需要关闭通道，不然会一直触发事件
+                socketChannel.close();
+            } else if (state == RECEIVING){
+                System.out.println("RECEIVING");
                 int length = 0;
                 while ((length = socketChannel.read(byteBuffer)) > 0) {
                     System.out.println(new String(byteBuffer.array(), 0, length));

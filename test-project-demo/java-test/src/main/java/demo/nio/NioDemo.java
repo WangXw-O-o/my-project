@@ -98,8 +98,12 @@ public class NioDemo {
                     SocketChannel socketChannel = (SocketChannel) key.channel();
                     socketChannel.configureBlocking(false);
                     //将数据读入到缓冲区
-                    int length = socketChannel.read(byteBuffer);
-                    System.out.println(new String(byteBuffer.array(), 0, length));
+                    int length = 0;
+                    while ((length = socketChannel.read(byteBuffer)) > 0) {
+                        System.out.println(new String(byteBuffer.array(), 0, length));
+                    }
+                    //读完数据后关闭通道，不然会一直触发读事件
+                    socketChannel.close();
                 }
                 //移除已被处理的事件
                 iterator.remove();
