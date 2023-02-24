@@ -10,7 +10,10 @@ import java.util.Set;
 
 public class NioDemo {
 
-    //处理 Selector 中的IO事件
+    /**
+     * 简单的服务器使用 Selector 监听服务端口并接收数据
+     * @throws IOException
+     */
     public static void runServerSocketChannel() throws IOException {
         //创建一个Selector
         Selector selector = Selector.open();
@@ -51,6 +54,11 @@ public class NioDemo {
         }
     }
 
+    /**
+     * 使用 SocketChannel 监听 OP_READ 事件
+     * 实际中并不会这么使用
+     * @throws IOException
+     */
     public static void runServer_OP_READ() throws IOException {
         //创建一个Selector
         Selector selector = Selector.open();
