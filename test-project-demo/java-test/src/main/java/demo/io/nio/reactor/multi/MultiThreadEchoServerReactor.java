@@ -1,6 +1,4 @@
-package demo.nio.reactor.multi;
-
-import demo.nio.reactor.single.EchoHandler;
+package demo.io.nio.reactor.multi;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

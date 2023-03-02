@@ -1,13 +1,9 @@
 package test;
 
-import demo.nio.NioDemo;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Test {

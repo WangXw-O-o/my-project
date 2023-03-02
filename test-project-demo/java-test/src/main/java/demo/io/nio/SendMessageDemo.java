@@ -1,4 +1,4 @@
-package demo.nio;
+package demo.io.nio;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,7 +1,6 @@
-package demo.nio.reactor;
+package demo.io.nio.reactor;
 
-import demo.nio.reactor.multi.MultiThreadEchoServerReactor;
-import demo.nio.reactor.single.EchoServerReactor;
+import demo.io.nio.reactor.multi.MultiThreadEchoServerReactor;
 
 import java.io.IOException;
 

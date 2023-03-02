@@ -1,4 +1,4 @@
-package demo.nio.reactor.single;
+package demo.io.nio.reactor.single;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
