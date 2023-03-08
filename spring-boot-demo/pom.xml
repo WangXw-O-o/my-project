@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>my-project</artifactId>
-        <groupId>org.wxw</groupId>
+        <groupId>com.wxw</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -42,14 +42,14 @@
 
         <!-- self -->
         <dependency>
-            <groupId>org.wxw</groupId>
+            <groupId>com.wxw</groupId>
             <artifactId>drools-demo</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.wxw</groupId>
+            <groupId>com.wxw</groupId>
             <artifactId>web-service</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
