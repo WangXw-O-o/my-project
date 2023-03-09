@@ -11,6 +11,7 @@
 
     <artifactId>test-project-demo</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>java-test</module>
         <module>jvm-demo</module>
