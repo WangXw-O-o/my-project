@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * 自定义的加载yml配置文件的工厂类
+ * 自定义的加载 yml 配置文件的工厂类
  */
 public class YmlConfigFactory extends DefaultPropertySourceFactory {
 
