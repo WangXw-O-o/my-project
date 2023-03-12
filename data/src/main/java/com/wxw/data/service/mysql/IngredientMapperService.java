@@ -1,6 +1,6 @@
-package com.wxw.data.service;
+package com.wxw.data.service.mysql;
 
-import com.wxw.data.pojo.Ingredient;
+import com.wxw.data.pojo.mysql.Ingredient;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package com.wxw.data.service.impl;
+package com.wxw.data.service.mysql.impl;
 
-import com.wxw.data.dao.IngredientMapper;
-import com.wxw.data.pojo.Ingredient;
-import com.wxw.data.service.IngredientMapperService;
+import com.wxw.data.dao.mysql.IngredientMapper;
+import com.wxw.data.pojo.mysql.Ingredient;
+import com.wxw.data.service.mysql.IngredientMapperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

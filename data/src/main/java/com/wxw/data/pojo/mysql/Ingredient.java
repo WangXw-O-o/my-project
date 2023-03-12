@@ -1,4 +1,4 @@
-package com.wxw.data.pojo;
+package com.wxw.data.pojo.mysql;
 
 import lombok.Data;
 import lombok.ToString;

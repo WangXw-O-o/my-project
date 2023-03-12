@@ -16,8 +16,8 @@ import org.springframework.context.annotation.PropertySource;
 //scanBasePackages 指定需要扫描的包路径（扫描其他module下的Bean），不指定就只能扫描启动类下的Bean
 //需要导入对应的依赖，不然无法找到包路径
 @SpringBootApplication(scanBasePackages = {"com.wxw.*"})
-//MyBatis的Mapper扫描
-@MapperScan("com.wxw.data.dao")
+////MyBatis的Mapper扫描
+//@MapperScan("com.wxw.data.dao")
 //只能默认加载.properties文件，想要加载yml配置文件，需要自己实现一个加载类 YmlConfigFactory
 @PropertySource(value = {"classpath:application.yml"}, factory = YmlConfigFactory.class)
 //扫描注解方式定义的过滤器
