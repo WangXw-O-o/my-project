@@ -43,7 +43,7 @@ public class MysqlMyBatisConfig {
         configuration.setMapUnderscoreToCamelCase(true);
         configuration.setDefaultFetchSize(100);
         configuration.setDefaultStatementTimeout(30);
-        //启用缓存机制
+        //启用缓存机制：二级缓存开启、在映射文件实际中声明<cached />才实际开启
         configuration.setCacheEnabled(true);
         //启用懒加载机制
         configuration.setLazyLoadingEnabled(true);
