@@ -34,6 +34,7 @@ public class OracleMyBatisConfig {
 
     @Bean
     public SqlSessionFactory oracleSqlSessionFactory() throws Exception {
+        //将由 SqlSessionFactoryBean 在 Bean 构建时，调用getObject()加载映射文件，创建一个 SqlSessionFactory Bean
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(
@@ -50,7 +51,9 @@ public class OracleMyBatisConfig {
         configuration.setLazyLoadingEnabled(true);
 
         bean.setConfiguration(configuration);
-        return bean.getObject();
+        //核心就是调用 getObject() 方法
+        SqlSessionFactory object = bean.getObject();
+        return object;
     }
 
     @Bean

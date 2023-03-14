@@ -7,4 +7,13 @@
     <select id="getAll" resultType="com.wxw.data.pojo.oracle.Test">
         select * from TEST
     </select>
+    <select id="getOne" resultType="com.wxw.data.pojo.oracle.Test" parameterType="java.lang.Long">
+        select * from TEST where ID = #{1}
+    </select>
+    <select id="getOneById" resultType="com.wxw.data.pojo.oracle.Test" parameterType="long">
+        select * from TEST where ID = ${1}
+    </select>
+    <select id="getOneByIdAndName" resultType="com.wxw.data.pojo.oracle.Test">
+        select * from TEST where ID = #{id} and NAME = #{name}
+    </select>
 </mapper>

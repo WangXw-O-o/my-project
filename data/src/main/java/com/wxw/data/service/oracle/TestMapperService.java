@@ -8,4 +8,10 @@ public interface TestMapperService {
 
     List<Test> getAll();
 
+    Test getOne(Long id);
+
+    Test getOneById(Long id);
+
+    Test getOneByIdAndName(Long id, String name);
+
 }

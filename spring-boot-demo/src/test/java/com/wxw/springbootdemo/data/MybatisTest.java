@@ -25,8 +25,14 @@ public class MybatisTest {
 
     @Test
     public void setTestMapperService() {
-        List<com.wxw.data.pojo.oracle.Test> all = testMapperService.getAll();
-        System.out.println(all);
+//        List<com.wxw.data.pojo.oracle.Test> all = testMapperService.getAll();
+//        System.out.println(all);
+        com.wxw.data.pojo.oracle.Test one = testMapperService.getOne(1L);
+        System.out.println(one);
+//        com.wxw.data.pojo.oracle.Test two = testMapperService.getOneById(2L);
+//        System.out.println(two);
+//        com.wxw.data.pojo.oracle.Test three = testMapperService.getOneByIdAndName(3L, "杨五1");
+//        System.out.println(three);
     }
 
 }
