@@ -20,6 +20,12 @@ spring:
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
     time-zone: GMT+8
+  rabbitmq:
+    host: 192.168.249.128
+    port: 5672
+    username: test
+    password: test
+    virtual-host: /
 
 mysql:
   driverClassName: com.mysql.cj.jdbc.Driver

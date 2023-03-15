@@ -1,6 +1,6 @@
-package com.wxw.webservice.config;
+package com.wxw.api.webservice.config;
 
-import com.wxw.webservice.WebServiceFacade;
+import com.wxw.api.webservice.WebServiceFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;

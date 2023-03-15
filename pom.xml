@@ -10,6 +10,7 @@
         <module>test-project-demo</module>
         <module>api-demo</module>
         <module>data</module>
+        <module>mq-service</module>
     </modules>
 
     <parent>
@@ -155,6 +156,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-package com.wxw.webservice;
+package com.wxw.api.webservice;
 
 
 import javax.jws.WebMethod;
