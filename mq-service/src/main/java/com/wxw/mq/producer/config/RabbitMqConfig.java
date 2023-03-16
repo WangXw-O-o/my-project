@@ -1,5 +1,6 @@
 package com.wxw.mq.producer.config;
 
+import com.wxw.mq.common.RabbitMqCommon;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -8,21 +9,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
 
-    public static final String EXCHANGE_NAME = "boot_topic_exchange";
-    public static final String QUEUE_NAME = "boot_queue";
-    public static final String ROUTING_KEY = "boot.#";
-
-    //交换机
-    @Bean("bootExchange")
-    public Exchange bootExchange() {
+    @Bean("testExchange")
+    public Exchange testExchange() {
         //durable:是否持久化
-        return ExchangeBuilder.topicExchange(EXCHANGE_NAME).durable(true).build();
+        return ExchangeBuilder.topicExchange(RabbitMqCommon.TEST_EXCHANGE_NAME).durable(true).build();
     }
 
     //队列
-    @Bean("bootQueue")
-    public Queue bootQueue() {
-        return QueueBuilder.durable(QUEUE_NAME).build();
+    @Bean("testQueue")
+    public Queue testQueue() {
+        return QueueBuilder.durable(RabbitMqCommon.TEST_QUEUE_NAME).build();
     }
 
     /**
@@ -30,8 +26,8 @@ public class RabbitMqConfig {
      * 1、
      */
     @Bean
-    public Binding bindQueueAndExchange(@Qualifier("bootQueue") Queue queue, @Qualifier("bootExchange") Exchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY).noargs();
+    public Binding bindQueueAndExchange(@Qualifier("testQueue") Queue queue, @Qualifier("testExchange") Exchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(RabbitMqCommon.TEST_ROUTING_KEY).noargs();
     }
 
 }
