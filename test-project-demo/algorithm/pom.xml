@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>test-project-demo</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>java-test</module>
-        <module>jvm-demo</module>
-        <module>sql-script</module>
-        <module>algorithm</module>
-    </modules>
+    <artifactId>algorithm</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -35,4 +27,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
