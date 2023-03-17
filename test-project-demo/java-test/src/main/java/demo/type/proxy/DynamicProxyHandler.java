@@ -17,7 +17,7 @@ public class DynamicProxyHandler implements InvocationHandler {
     }
 
     /**
-     * 代理过程
+     * 代理过程：接口的调用请求都被转发到此方法中
      * @param proxy  代理对象
      * @param method 方法
      * @param args   参数
@@ -29,7 +29,10 @@ public class DynamicProxyHandler implements InvocationHandler {
         System.out.println("DynamicProxyHandler.invoke[**** proxy: " + proxy.getClass().getName()
                 + "  method: " + method.getName()
                 + " args: " + Arrays.toString(args) + "]");
-        //请求转发到被代理的对象上，即执行被代理对象上的对应方法
+        //做一些其他的处理
+        //可以什么都不做，或者全部都只做一种事
+        //但是此处理器中，在构造代理对象时，绑定了一个实现类（非必须的）
+        //那么能使用 method.invoke(proxied, args) 来执行实现类中方法
         return method.invoke(proxied, args);
     }
 
