@@ -24,5 +24,6 @@ public interface TestMapper {
 
     Test getOneByIdAndName(@Param("id") Long id, @Param("name") String name);
 
+    int insertBatch(@Param("list") List<Test> list);
 
 }

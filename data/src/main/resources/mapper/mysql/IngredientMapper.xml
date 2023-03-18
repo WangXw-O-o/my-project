@@ -7,4 +7,17 @@
     <select id="getAll" resultType="com.wxw.data.pojo.mysql.Ingredient">
         select * from ingredient
     </select>
+
+    <insert id="insertOne" parameterType="com.wxw.data.pojo.mysql.Ingredient">
+        insert into ingredient(id, name, type)
+        values (#{ingredient.id}, #{ingredient.name}, #{ingredient.type})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into ingredient(id, name, type)
+        values
+        <foreach collection="list" separator="," item="ingredient">
+            (#{ingredient.id}, #{ingredient.name}, #{ingredient.type})
+        </foreach>
+    </insert>
 </mapper>

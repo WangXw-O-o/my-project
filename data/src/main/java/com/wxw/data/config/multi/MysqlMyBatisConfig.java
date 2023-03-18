@@ -31,7 +31,7 @@ public class MysqlMyBatisConfig {
         this.dataSource = dataSource;
     }
 
-    @Bean
+    @Bean("mysqlSqlSessionFactory")
     public SqlSessionFactory mysqlSqlSessionFactory() throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);

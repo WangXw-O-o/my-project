@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 启动类
@@ -22,6 +23,7 @@ import org.springframework.context.annotation.PropertySource;
 @ServletComponentScan(value = {"com/wxw/springbootdemo/web/filter"})
 //使配置文件中的配置生效并映射到指定类的属性
 @EnableConfigurationProperties({DruidStatProperties.class, DataSourceProperties.class})
+@EnableTransactionManagement //开启事务
 public class SpringBootDemoApplication {
 
     public static void main(String[] args) {

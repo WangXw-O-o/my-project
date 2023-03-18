@@ -4,6 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wxw.data.dao.oracle.TestMapper">
+
+    <insert id="insertBatch">
+        insert all
+        <foreach collection="list" item="test">
+            into TEST values (#{test.id}, #{test.name},#{test.age},#{test.address})
+        </foreach>
+        select * from dual
+    </insert>
+
     <select id="getAll" resultType="com.wxw.data.pojo.oracle.Test">
         select * from TEST
     </select>
