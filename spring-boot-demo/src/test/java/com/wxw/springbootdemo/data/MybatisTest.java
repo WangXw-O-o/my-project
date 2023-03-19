@@ -56,8 +56,8 @@ public class MybatisTest {
             ingredient.setType("type" + (i % 5));
             list.add(ingredient);
         }
-//        ingredientMapperService.insertBatchBySql(list);
-        ingredientMapperService.insertBatchBySqlSession(list);
+        ingredientMapperService.insertBatchBySql(list);
+//        ingredientMapperService.insertBatchBySqlSession(list);
     }
 
 }
