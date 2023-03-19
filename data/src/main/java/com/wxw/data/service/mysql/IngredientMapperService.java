@@ -25,7 +25,7 @@ public interface IngredientMapperService {
      * 手动创建 SqlSession 来执行，还是每次只插入一条数据
      * 避免了每次都去创建 SqlSession 的开销
      *
-     * 10000条耗时20000ms+
+     * 10000条耗时15000ms+
      * @param list
      * @return
      */

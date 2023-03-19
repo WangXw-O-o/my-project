@@ -49,15 +49,15 @@ public class MybatisTest {
     @Test
     public void mysqlInsertBatchTest() {
         List<Ingredient> list = new ArrayList<>();
-        for (int i = 1; i <= 10000; i++) {
+        for (int i = 10000; i <= 20000; i++) {
             Ingredient ingredient = new Ingredient();
             ingredient.setId(i + "");
             ingredient.setName("name"+i);
             ingredient.setType("type" + (i % 5));
             list.add(ingredient);
         }
-        ingredientMapperService.insertBatchBySql(list);
-//        ingredientMapperService.insertBatchBySqlSession(list);
+//        ingredientMapperService.insertBatchBySql(list);
+        ingredientMapperService.insertBatchBySqlSession(list);
     }
 
 }

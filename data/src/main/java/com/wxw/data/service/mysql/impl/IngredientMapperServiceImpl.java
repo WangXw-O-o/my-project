@@ -4,6 +4,7 @@ import com.wxw.data.dao.mysql.IngredientMapper;
 import com.wxw.data.pojo.mysql.Ingredient;
 import com.wxw.data.service.mysql.IngredientMapperService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,19 +77,19 @@ public class IngredientMapperServiceImpl implements IngredientMapperService {
     @Override
     public int insertBatchBySqlSession(List<Ingredient> list) {
         int count = 0;
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
         IngredientMapper mapper = sqlSession.getMapper(IngredientMapper.class);
         log.info("[insert]开始，共插入[{}]条。", list.size());
         long start = System.currentTimeMillis();
         try {
             for (Ingredient ingredient : list) {
-                count += mapper.insertOne(ingredient);
+                mapper.insertOne(ingredient);
             }
             sqlSession.commit();
+            count = list.size();
         } catch (Exception e) {
             log.error("插入执行异常, 回滚。", e);
             sqlSession.rollback();
-            count = 0;
         }
         long end = System.currentTimeMillis();
         log.info("[insert]结束，成功插入[{}]条，耗时[{}ms]", count, (end - start));
