@@ -9,7 +9,8 @@ public class SortAlgorithm {
     public static void main(String[] args) {
 //        System.out.println(Arrays.toString(mao_pao_sort(new int[]{1, 4, 3, 2, 5, 6})));
 //        System.out.println(Arrays.toString(cha_ru_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7})));
-        System.out.println(Arrays.toString(xuan_ze_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7})));
+//        System.out.println(Arrays.toString(xuan_ze_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7})));
+        System.out.println(Arrays.toString(kuai_su_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7, 0, 1,1,1,2,3,4,5,7,5,10})));
     }
 
     /**
@@ -101,36 +102,59 @@ public class SortAlgorithm {
         return target;
     }
 
+    /**
+     * 快速排序
+     */
     public static int[] kuai_su_sort(int[] target) {
         if (target==null || target.length < 2) {
             return target;
         }
-        //基准点
-        int mid = 0;
-        int midValue = target[mid];
-
-
-
+        handle(target, 0, target.length - 1);
         return target;
     }
 
-    public static void handle(int[] target, int min, int max) {
-        int mid = target[min];
-        int left = min;
-        int right = max;
-        //找到第一个比mid小的元素
-        while (left <= right) {
-            if (target[left] < target[min]) {
-               //交换位置
-            }
-            left++;
+    public static void handle(int[] target, int start, int end) {
+        if (start >= end) {
+            return;
         }
-        //找到第一个比mid大的元素
+        int mid = start;
+        int left = start + 1;
+        int right = end;
+        //左边找比mid大的，右边找比mid小的
         while (left <= right) {
-            if (target[right] > target[min]) {
-                //交换位置
+            //右边找到第一个比mid小的
+            while (target[right] > target[mid] && right > mid) {
+                right--;
             }
-            right--;
+            if (right == mid) {
+                break;
+            } else {
+                //与小的交换位置
+                int temp = target[right];
+                target[right] = target[mid];
+                target[mid] = temp;
+                mid = right;
+                right--;
+            }
+
+            //左边找到第一个比mid大的
+            while (target[left] < target[mid] && left < mid) {
+                left++;
+            }
+            if (left == mid) {
+                break;
+            } else {
+                int temp = target[left];
+                target[left] = target[mid];
+                target[mid] = temp;
+                mid = left;
+                left++;
+            }
         }
+        //处理左边小的
+        handle(target, start, mid - 1);
+        //处理右边大的
+        handle(target, mid + 1, end);
+
     }
 }
