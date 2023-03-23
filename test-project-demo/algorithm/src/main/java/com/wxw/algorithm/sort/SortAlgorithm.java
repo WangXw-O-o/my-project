@@ -10,11 +10,12 @@ public class SortAlgorithm {
 //        System.out.println(Arrays.toString(mao_pao_sort(new int[]{1, 4, 3, 2, 5, 6})));
 //        System.out.println(Arrays.toString(cha_ru_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7})));
 //        System.out.println(Arrays.toString(xuan_ze_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7})));
-        System.out.println(Arrays.toString(kuai_su_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7, 0, 1,1,1,2,3,4,5,7,5,10})));
+//        System.out.println(Arrays.toString(kuai_su_sort(new int[]{1, 4, 3, 2, 5, 9, 8, 6, 7, 0, 1,1,1,2,3,4,5,7,5,10})));
+        System.out.println(Arrays.toString(gui_bing_Sort(new int[]{11, 4, 32, 2, 5, 9, 8, 6, 7, 0, 1,1,1,2,3,4,5,7,5,10})));
     }
 
     /**
-     * 选择排序
+     * 插入排序
      * 时间复杂度：nlogn
      * 空间复杂度：2n
      */
@@ -79,6 +80,8 @@ public class SortAlgorithm {
 
     /**
      * 选择排序
+     * 时间复杂度：
+     * 空间复杂度：1
      */
     public static int[] xuan_ze_sort(int[] target) {
         if (target == null || target.length < 2) {
@@ -104,6 +107,8 @@ public class SortAlgorithm {
 
     /**
      * 快速排序
+     * 时间复杂度：
+     * 空间复杂度：1
      */
     public static int[] kuai_su_sort(int[] target) {
         if (target==null || target.length < 2) {
@@ -156,5 +161,62 @@ public class SortAlgorithm {
         //处理右边大的
         quickSort(target, mid + 1, end);
 
+    }
+
+    /**
+     * 归并排序
+     * 时间复杂度：NLogN
+     * 空间复杂度：1
+     */
+    public static int[] gui_bing_Sort(int[] target) {
+        mergeSort(target, 0, target.length - 1);
+        return target;
+    }
+
+    private static void mergeSort(int[] target, int left, int right) {
+        //递归出口
+        if (left >= right) {
+            return;
+        }
+        //分成两边
+        int mid = (left + right) / 2;
+        //左边递归
+        mergeSort(target, left, mid);
+        //右边递归
+        mergeSort(target, mid + 1, right);
+        //左右排序，冒泡排序，右边最小的往左边冒
+        int rightMin = mid + 1;
+
+        while (rightMin <= right) {
+            int leftMix = rightMin;
+            if (target[leftMix] > target[leftMix - 1]) {
+                //右边最小比左边最大的大时，可以直接终止循环
+                break;
+            }
+            while (leftMix > left) {
+                if (target[leftMix] < target[leftMix - 1]) {
+                    int temp = target[leftMix];
+                    target[leftMix] = target[leftMix - 1];
+                    target[leftMix - 1] = temp;
+                } else {
+                    //比左边最大的大时，可以直接终止循环
+                    break;
+                }
+                leftMix--;
+            }
+            rightMin++;
+        }
+
+    }
+
+
+    /**
+     * 堆排序
+     */
+    public static int[] dui_sort(int[] target) {
+        //构建大根堆/小根堆
+        //输出堆
+
+        return target;
     }
 }
