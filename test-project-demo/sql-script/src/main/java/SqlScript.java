@@ -1,11 +1,21 @@
 import handler.LineHandler;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class SqlScript {
 
     public static void main(String[] args) {
-        create_he_gui_BaseAccount_freeze();
-        create_BaseAccount_unFreeze();
-        create_BaseAccount_Freeze();
+//        create_he_gui_BaseAccount_freeze();
+//        create_BaseAccount_unFreeze();
+//        create_BaseAccount_Freeze();
+
+        createInfoShareData();
     }
 
     //合规银行基本户冻结
@@ -68,4 +78,49 @@ public class SqlScript {
                 });
     }
 
+
+    private static void createInfoShareData() {
+        String memberIdAndIdCardFilePath = "/Users/xl-shuke/Desktop/blacklist.csv";
+        String userIdAndIdCardFilePath = "/Users/xl-shuke/Downloads/data.csv";
+        try (
+                BufferedReader readerMemberId = new BufferedReader(new InputStreamReader(new FileInputStream(memberIdAndIdCardFilePath)));
+                BufferedReader readerUserId = new BufferedReader(new InputStreamReader(new FileInputStream(userIdAndIdCardFilePath)));
+                ) {
+            Map<String, List<String>> mMap = new HashMap<>();
+
+            String line = readerMemberId.readLine();
+            while ((line = readerMemberId.readLine()) != null) {
+                String[] split = line.split(",");
+                String memberId = split[0];
+                String idCard = split[1];
+                if (!mMap.containsKey(idCard)) {
+                    List<String> list = new ArrayList<>();
+                    list.add(memberId);
+                    mMap.put(idCard, list);
+                } else {
+                    mMap.get(idCard).add(memberId);
+                }
+            }
+
+            Map<String, List<String>> uMap = new HashMap<>();
+            String line1 = readerUserId.readLine();
+            while ((line1 = readerUserId.readLine()) != null) {
+                String[] split = line1.replaceAll("\"", "").split(",");
+                String idCard = split[0];
+                String userId = split[1];
+                if (mMap.containsKey(idCard)) {
+                    if (!uMap.containsKey(idCard)) {
+                        List<String> list = new ArrayList<>();
+                        list.add(userId);
+                        uMap.put(idCard, list);
+                    } else {
+                        uMap.get(idCard).add(userId);
+                    }
+                }
+            }
+            System.out.println();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
