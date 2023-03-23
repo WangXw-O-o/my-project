@@ -109,11 +109,11 @@ public class SortAlgorithm {
         if (target==null || target.length < 2) {
             return target;
         }
-        handle(target, 0, target.length - 1);
+        quickSort(target, 0, target.length - 1);
         return target;
     }
 
-    public static void handle(int[] target, int start, int end) {
+    public static void quickSort(int[] target, int start, int end) {
         if (start >= end) {
             return;
         }
@@ -152,9 +152,9 @@ public class SortAlgorithm {
             }
         }
         //处理左边小的
-        handle(target, start, mid - 1);
+        quickSort(target, start, mid - 1);
         //处理右边大的
-        handle(target, mid + 1, end);
+        quickSort(target, mid + 1, end);
 
     }
 }
