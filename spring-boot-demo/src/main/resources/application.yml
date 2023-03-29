@@ -38,3 +38,7 @@ oracle:
   url: jdbc:oracle:thin:@localhost:1521/ORCL
   username: TEST
   password: wxw12345
+
+memcached:
+  address: 192.168.249.128
+  port: 11211

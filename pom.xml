@@ -11,6 +11,7 @@
         <module>api-demo</module>
         <module>data</module>
         <module>mq-service</module>
+        <module>cache-service</module>
     </modules>
 
     <parent>
@@ -32,6 +33,7 @@
         <cxf.version>3.4.3</cxf.version>
         <druid.version>1.1.9</druid.version>
         <mybatis.version>2.0.0</mybatis.version>
+        <xmemcached.version>2.0.0</xmemcached.version>
     </properties>
 
     <dependencies>
@@ -161,6 +163,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.xmemcached</groupId>
+            <artifactId>xmemcached</artifactId>
+            <version>${xmemcached.version}</version>
         </dependency>
     </dependencies>
 
