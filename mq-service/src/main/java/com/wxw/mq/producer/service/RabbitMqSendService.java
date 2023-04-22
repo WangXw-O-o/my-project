@@ -33,4 +33,10 @@ public interface RabbitMqSendService {
      * @param queueName 队列名称
      */
     void getPullMessage(String queueName);
+
+    /**
+     * 将消息发送到网关限流队列
+     * @param message 消息
+     */
+    boolean sendMessageToGatewayPeakClippingQueue(String message);
 }

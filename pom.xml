@@ -34,6 +34,7 @@
         <druid.version>1.1.9</druid.version>
         <mybatis.version>2.0.0</mybatis.version>
         <xmemcached.version>2.0.0</xmemcached.version>
+        <fastjson.version>2.0.28</fastjson.version>
     </properties>
 
     <dependencies>
@@ -174,6 +175,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
     </dependencies>
 

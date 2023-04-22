@@ -1,6 +1,7 @@
 package com.wxw.mq.producer.service.impl;
 
 import com.rabbitmq.client.*;
+import com.wxw.mq.common.RabbitMqCommon;
 import com.wxw.mq.producer.service.RabbitMqSendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.Connection;
@@ -92,5 +93,18 @@ public class RabbitMqSendServiceImpl implements RabbitMqSendService {
         String message = new String(getResponse.getBody(), StandardCharsets.UTF_8);
         log.info("queue=[{}], getPullMessage=[{}]", queueName, message);
         return getResponse.getMessageCount();
+    }
+
+    @Override
+    public boolean sendMessageToGatewayPeakClippingQueue(String message) {
+        try {
+            sendMessage(RabbitMqCommon.EXCHANGE_GATEWAY_PEAK_CLIPPING,
+                    RabbitMqCommon.ROUTING_KEY_GATEWAY_PEAK_CLIPPING,
+                    message);
+            return true;
+        } catch (Exception e) {
+            log.error("消息发送失败！", e);
+            return false;
+        }
     }
 }

@@ -16,9 +16,9 @@
             <pattern>${PATTERN}</pattern>
         </layout>
         <!--过滤器，只有过滤到指定级别的日志信息才会输出，如果level为ERROR，那么控制台只会输出ERROR日志-->
-        <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
-        <!--            <level>ERROR</level>-->
-        <!--        </filter>-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
     </appender>
 
     <!--正常的日志文件，输出到文件中-->

@@ -1,5 +1,7 @@
 package com.wxw.mq.comsumer.listener;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.wxw.mq.common.RabbitMqCommon;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -22,5 +24,6 @@ public class RabbitMqListener {
         String messageString = new String(message.getBody(), StandardCharsets.UTF_8);
         log.info("消费消息：queue=[{}], message.Body=[{}]", RabbitMqCommon.TEST_QUEUE_NAME, messageString);
     }
+
 
 }
