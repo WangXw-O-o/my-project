@@ -1,9 +1,6 @@
 package com.wxw.mq.producer.service;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
-
-public interface RabbitMqSendService {
+public interface RabbitMqService {
 
     /**
      * 发送消息
@@ -39,4 +36,11 @@ public interface RabbitMqSendService {
      * @param message 消息
      */
     boolean sendMessageToGatewayPeakClippingQueue(String message);
+
+    /**
+     * 消费端限流
+     * @param queueName
+     * @param limit
+     */
+    void consumeWithFlowLimit(String queueName, int limit);
 }

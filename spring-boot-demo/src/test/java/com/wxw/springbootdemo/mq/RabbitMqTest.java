@@ -1,7 +1,7 @@
 package com.wxw.springbootdemo.mq;
 
 import com.wxw.mq.common.RabbitMqCommon;
-import com.wxw.mq.producer.service.RabbitMqSendService;
+import com.wxw.mq.producer.service.RabbitMqService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +16,26 @@ import java.util.concurrent.TimeoutException;
 public class RabbitMqTest {
 
     @Autowired
-    private RabbitMqSendService rabbitMqSendService;
+    private RabbitMqService rabbitMqService;
 
     @Test
     public void test() {
-        rabbitMqSendService.sendMessage(RabbitMqCommon.TEST_EXCHANGE_NAME, "test.hello", "hello world");
+        rabbitMqService.sendMessage(RabbitMqCommon.TEST_EXCHANGE_NAME, "test.hello", "hello world");
     }
 
     @Test
     public void deleteExchange() throws IOException, TimeoutException {
-        rabbitMqSendService.deleteExchange("boot_topic_exchange");
+        rabbitMqService.deleteExchange("boot_topic_exchange");
     }
 
     @Test
     public void testPushGet() {
-        rabbitMqSendService.getPushMessage(RabbitMqCommon.TEST_PUSH_QUEUE_NAME);
+        rabbitMqService.getPushMessage(RabbitMqCommon.TEST_PUSH_QUEUE_NAME);
     }
 
     @Test
     public void testPullGet() {
-        rabbitMqSendService.getPullMessage(RabbitMqCommon.TEST_PULL_QUEUE_NAME);
+        rabbitMqService.getPullMessage(RabbitMqCommon.TEST_PULL_QUEUE_NAME);
     }
 
 }

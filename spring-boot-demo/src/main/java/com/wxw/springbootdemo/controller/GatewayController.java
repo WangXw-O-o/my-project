@@ -1,8 +1,5 @@
 package com.wxw.springbootdemo.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.wxw.cache.redis.service.RedisService;
-import com.wxw.mq.producer.service.RabbitMqSendService;
 import com.wxw.springbootdemo.service.GatewayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

@@ -2,7 +2,7 @@ package com.wxw.mq.producer.service.impl;
 
 import com.rabbitmq.client.*;
 import com.wxw.mq.common.RabbitMqCommon;
-import com.wxw.mq.producer.service.RabbitMqSendService;
+import com.wxw.mq.producer.service.RabbitMqService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.Connection;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -12,13 +12,18 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 @Slf4j
-public class RabbitMqSendServiceImpl implements RabbitMqSendService {
+public class RabbitMqServiceImpl implements RabbitMqService {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
+
+    //设置10个线程来监听MQ
+    private static final ExecutorService pool = Executors.newFixedThreadPool(10);
 
     @Override
     public void sendMessage(String exchange, String routingKey, Object message) {
@@ -105,6 +110,36 @@ public class RabbitMqSendServiceImpl implements RabbitMqSendService {
         } catch (Exception e) {
             log.error("消息发送失败！", e);
             return false;
+        }
+    }
+
+    @Override
+    public void consumeWithFlowLimit(String queueName, int limit) {
+        try {
+            ConnectionFactory connectionFactory = rabbitTemplate.getConnectionFactory();
+            Connection connection = connectionFactory.createConnection();
+            Channel channel = connection.createChannel(false);
+            //给服务器设置prefetchCount：消费者一次最多能消费消息的数量
+            channel.basicQos(0, limit, true);
+            while (true) {
+                pool.execute(()->{
+                    //连接到队列
+                    try {
+                        channel.basicConsume(queueName, new DefaultConsumer(channel) {
+                            @Override
+                            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                                log.info("consumeWithFlowLimit consumer message={}", new String(body, StandardCharsets.UTF_8));
+                                //手动确认消息
+                                channel.basicAck(envelope.getDeliveryTag(), true);
+                            }
+                        });
+                    } catch (IOException e) {
+                        log.error("consumeWithFlowLimit Thread[{}] execute error:{}", Thread.currentThread().getName(), e);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            log.info("consumeWithFlowLimit error:", e);
         }
     }
 }

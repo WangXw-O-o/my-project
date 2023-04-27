@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wxw.cache.redis.service.RedisService;
 import com.wxw.mq.common.RabbitMqCommon;
-import com.wxw.mq.producer.service.RabbitMqSendService;
+import com.wxw.mq.producer.service.RabbitMqService;
 import com.wxw.springbootdemo.service.GatewayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -14,14 +14,13 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
 public class GatewayServiceImpl implements GatewayService {
 
     @Resource
-    private RabbitMqSendService rabbitMqSendService;
+    private RabbitMqService rabbitMqService;
     @Resource
     private RedisService redisService;
 
@@ -38,7 +37,7 @@ public class GatewayServiceImpl implements GatewayService {
             jsonObject.put(Message_Key, param);
             jsonObject.put(Cache_Key, cacheKey);
             //放入MQ
-            boolean sendSuccess = rabbitMqSendService.sendMessageToGatewayPeakClippingQueue(jsonObject.toJSONString());
+            boolean sendSuccess = rabbitMqService.sendMessageToGatewayPeakClippingQueue(jsonObject.toJSONString());
             if (!sendSuccess) {
                 log.info("消息发送MQ失败！");
                 return "System Error!!!";
@@ -59,7 +58,7 @@ public class GatewayServiceImpl implements GatewayService {
     }
 
     /**
-     * 消费网关数据
+     * 使用监听器消费网关队列数据
      */
     @RabbitListener(queues = RabbitMqCommon.QUEUE_GATEWAY_PEAK_CLIPPING)
     public void listenGatewayPeakClippingQueue(Message message) {
@@ -72,4 +71,6 @@ public class GatewayServiceImpl implements GatewayService {
         String result = "请求数据：" + requestMessage + "。处理结果：成功！！！";
         redisService.set(cacheKey, result);
     }
+
+
 }
